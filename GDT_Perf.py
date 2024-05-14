@@ -7,6 +7,7 @@ from gdo.base.Database import Database
 from gdo.base.GDO import GDO
 from gdo.base.GDO_Module import GDO_Module
 from gdo.base.GDT import GDT
+from gdo.base.ModuleLoader import ModuleLoader
 from gdo.base.Util import Files
 from gdo.core.GDO_User import GDO_User
 from gdo.core.GDT_String import GDT_String
@@ -25,6 +26,9 @@ class GDT_Perf(GDT_Panel):
         user = GDO_User.current()
         mem = psutil.Process().memory_info()
         app = Application
+        loader = ModuleLoader.instance()
+        me = sum(1 for _ in loader.enabled())
+        ml = len(loader._cache)
         return GDT_Bar().horizontal().add_field(
             GDT_String('version').text('perf_version', [GDO_Module.CORE_REV]),
             GDT_Divider(),
@@ -36,7 +40,7 @@ class GDT_Perf(GDT_Panel):
             GDT_Divider(),
             GDT_String('db').text('perf_db', [str(app.DB_READS), str(app.DB_WRITES), str(app.DB_READS + app.DB_WRITES)]),
             GDT_Divider(),
-            GDT_String('code').text('perf_code', [GDT.GDT_COUNT, GDT.GDT_MAX, GDO.GDO_COUNT, GDO.GDO_MAX]),
+            GDT_String('code').text('perf_code', [GDT.GDT_COUNT, GDT.GDT_MAX, GDO.GDO_COUNT, GDO.GDO_MAX, me, ml]),
             GDT_Divider(),
             GDT_Duration('time').initial_value(Application.request_time()),
         )
