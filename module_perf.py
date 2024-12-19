@@ -8,7 +8,7 @@ class module_perf(GDO_Module):
 
     def gdo_module_config(self) -> list[GDT]:
         return [
-            GDT_Enum('show_perf').choices({"never": "Never", "always": "Always", "staff": "Staff"}).initial('always'),
+            GDT_Enum('show_perf').not_null().choices({"never": "Never", "always": "Always", "staff": "Staff"}).initial('always'),
         ]
 
     def cfg_show_perf(self) -> str:
