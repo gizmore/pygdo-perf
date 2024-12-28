@@ -22,8 +22,8 @@ class GDT_Perf(GDT_Panel):
     def __init__(self):
         super().__init__()
 
-    async def get_perf(self):
-        user = await GDO_User.current()
+    def get_perf(self):
+        user = GDO_User.current()
         mem = psutil.Process().memory_info()
         app = Application
         loader = ModuleLoader.instance()
@@ -45,12 +45,12 @@ class GDT_Perf(GDT_Panel):
             GDT_Duration('time').initial_value(Application.request_time()),
         )
 
-    async def render_html(self):
-        self.text_raw(await (await self.get_perf()).render_html(), False)
-        return await super().render_html()
+    def render_html(self):
+        self.text_raw(self.get_perf().render_html(), False)
+        return super().render_html()
 
-    async def render_cli(self):
-        return (await self.get_perf()).render_cli()
+    def render_cli(self):
+        return self.get_perf().render_cli()
 
-    async def render_irc(self):
-        return (await self.get_perf()).render_irc()
+    def render_irc(self):
+        return self.get_perf().render_txt()

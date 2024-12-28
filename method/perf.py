@@ -8,5 +8,5 @@ class perf(Method):
     def gdo_trigger(self) -> str:
         return 'perf'
 
-    async def gdo_execute(self) -> GDT:
+    def gdo_execute(self) -> GDT:
         return GDT_Perf()

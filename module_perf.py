@@ -23,7 +23,7 @@ class module_perf(GDO_Module):
         else:
             return GDO_User.current().is_staff()
 
-    async def gdo_init_sidebar(self, page):
+    def gdo_init_sidebar(self, page):
         if self.should_show_perf():
             from gdo.perf.GDT_Perf import GDT_Perf
             page._bottom_bar.add_field(GDT_Perf())
