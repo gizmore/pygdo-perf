@@ -52,5 +52,5 @@ class GDT_Perf(GDT_Panel):
     def render_cli(self):
         return self.get_perf().render_cli()
 
-    def render_irc(self):
+    def render_irc(self) -> str:
         return self.get_perf().render_txt()
