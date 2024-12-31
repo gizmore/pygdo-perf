@@ -8,6 +8,7 @@ from gdo.base.GDO import GDO
 from gdo.base.GDO_Module import GDO_Module
 from gdo.base.GDT import GDT
 from gdo.base.ModuleLoader import ModuleLoader
+from gdo.base.Render import Mode
 from gdo.base.Util import Files
 from gdo.core.GDO_User import GDO_User
 from gdo.core.GDT_String import GDT_String
@@ -50,7 +51,7 @@ class GDT_Perf(GDT_Panel):
         return super().render_html()
 
     def render_cli(self):
-        return self.get_perf().render_cli()
+        return self.get_perf().render(Mode.CLI)
 
     def render_irc(self) -> str:
-        return self.get_perf().render_txt()
+        return self.get_perf().render(Mode.TXT)
