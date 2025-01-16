@@ -49,12 +49,6 @@ class GDT_Perf(GDT_Panel):
             GDT_Duration('time').initial_value(Application.request_time()),
         )
 
-    def render_html(self):
-        self.text_raw(self.get_perf().render_html(), False)
-        return super().render_html()
-
-    def render_cli(self):
-        return self.get_perf().render(Mode.CLI)
-
-    def render_irc(self) -> str:
-        return self.get_perf().render(Mode.TXT)
+    def render(self, mode: Mode = Mode.HTML):
+        self.text_raw(self.get_perf().render(mode), False)
+        return super().render(mode)
