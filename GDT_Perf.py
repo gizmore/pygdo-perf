@@ -13,6 +13,7 @@ from gdo.base.ModuleLoader import ModuleLoader
 from gdo.base.Render import Mode
 from gdo.base.Util import Files
 from gdo.core.GDO_User import GDO_User
+from gdo.core.GDT_Container import GDT_Container
 from gdo.core.GDT_String import GDT_String
 from gdo.date.GDT_Duration import GDT_Duration
 from gdo.ui.GDT_Bar import GDT_Bar
@@ -32,7 +33,7 @@ class GDT_Perf(GDT_Panel):
         loader = ModuleLoader.instance()
         me = sum(1 for _ in loader.enabled())
         ml = len(loader._cache)
-        return GDT_Bar().horizontal().add_field(
+        return GDT_Container().add_field(
             GDT_String('version').text('perf_version', [GDO_Module.CORE_REV]),
             GDT_Divider(),
             GDT_String('user').text('perf_user', [user.render_name(), user.get_id()]),
