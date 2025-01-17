@@ -3,6 +3,7 @@ import threading
 import psutil
 
 from gdo.base.Application import Application
+from gdo.base.Cache import Cache
 from gdo.base.Database import Database
 from gdo.base.GDO import GDO
 from gdo.base.GDO_Module import GDO_Module
@@ -47,6 +48,8 @@ class GDT_Perf(GDT_Panel):
             GDT_String('events').text('perf_events', [str(app.EVENT_COUNT)]),
             GDT_Divider(),
             GDT_String('code').text('perf_code', [GDT.GDT_COUNT, GDT.GDT_MAX, GDO.GDO_COUNT, GDO.GDO_MAX, me, ml]),
+            GDT_Divider(),
+            GDT_String('cache').text('perf_cache', [Cache.HITS, Cache.MISS, Cache.UPDATES, Cache.REMOVES]),
             GDT_Divider(),
             GDT_Duration('time').initial_value(Application.request_time()),
         )
