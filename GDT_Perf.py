@@ -44,6 +44,8 @@ class GDT_Perf(GDT_Panel):
             GDT_Divider(),
             GDT_String('log').text('perf_log', [str(Logger.LINES_WRITTEN)]),
             GDT_Divider(),
+            GDT_String('events').text('perf_events', [str(app.EVENT_COUNT)]),
+            GDT_Divider(),
             GDT_String('code').text('perf_code', [GDT.GDT_COUNT, GDT.GDT_MAX, GDO.GDO_COUNT, GDO.GDO_MAX, me, ml]),
             GDT_Divider(),
             GDT_Duration('time').initial_value(Application.request_time()),
