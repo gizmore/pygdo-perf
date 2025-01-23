@@ -19,6 +19,7 @@ from gdo.core.GDT_String import GDT_String
 from gdo.date.GDT_Duration import GDT_Duration
 from gdo.ui.GDT_Bar import GDT_Bar
 from gdo.ui.GDT_Divider import GDT_Divider
+from gdo.ui.GDT_Link import GDT_Link
 from gdo.ui.GDT_Panel import GDT_Panel
 
 
@@ -56,6 +57,8 @@ class GDT_Perf(GDT_Panel):
             GDT_Divider(),
             #PYPP#END#
             GDT_Duration('time').initial_value(Application.request_time()),
+            GDT_Divider(),
+            GDT_Link().href(Application.get_page()._method.href('&__yappi=1')).text('perf_yappi', (Application.config('core.profile', '0'),))
         )
 
     def render(self, mode: Mode = Mode.HTML):
