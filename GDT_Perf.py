@@ -42,6 +42,7 @@ class GDT_Perf(GDT_Panel):
             GDT_Divider(),
             GDT_String('mem').text('perf_mem', (Files.human_file_size(mem.rss),)),
             GDT_Divider(),
+            #PYPP#BEGIN#
             GDT_String('db').text('perf_db', (str(app.DB_READS), str(app.DB_WRITES), str(app.DB_READS + app.DB_WRITES), round(app.DB_TRANSACTIONS, 2))),
             GDT_Divider(),
             GDT_String('log').text('perf_log', (str(Logger.LINES_WRITTEN),)),
@@ -52,6 +53,7 @@ class GDT_Perf(GDT_Panel):
             GDT_Divider(),
             GDT_String('cache').text('perf_cache', (Cache.HITS, Cache.MISS, Cache.UPDATES, Cache.REMOVES)),
             GDT_Divider(),
+            #PYPP#END#
             GDT_Duration('time').initial_value(Application.request_time()),
         )
 
