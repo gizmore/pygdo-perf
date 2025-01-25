@@ -1,4 +1,5 @@
 import threading
+import time
 
 import psutil
 
@@ -57,7 +58,7 @@ class GDT_Perf(GDT_Panel):
             GDT_String('cache').text('perf_cache', (Cache.HITS + ACache.HITS, Cache.MISS + ACache.MISS, Cache.UPDATES + ACache.UPDATES, Cache.REMOVES + ACache.REMOVES, c.OHITS, c.VHITS, c.THITS)),
             GDT_Divider(),
             #PYPP#END#
-            GDT_Duration('time').initial_value(Application.request_time()),
+            GDT_Duration('time').units(2, True).initial_value(app.request_time()),
             GDT_Divider(),
             GDT_Link().href(Application.get_page()._method.href('&__yappi=1')).text('perf_yappi', (Application.config('core.profile', '0'),))
         )
