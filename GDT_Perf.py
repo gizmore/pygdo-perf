@@ -35,6 +35,7 @@ class GDT_Perf(GDT_Panel):
         loader = ModuleLoader.instance()
         me = sum(1 for _ in loader.enabled())
         ml = len(loader._cache)
+        c = Cache
         return GDT_Container().add_field(
             GDT_String('version').text('perf_version', (GDO_Module.CORE_REV,)),
             GDT_Divider(),
@@ -53,7 +54,7 @@ class GDT_Perf(GDT_Panel):
             GDT_Divider(),
             GDT_String('code').text('perf_code', (GDT.GDT_COUNT, GDT.GDT_MAX, GDO.GDO_COUNT, GDO.GDO_MAX, me, ml)),
             GDT_Divider(),
-            GDT_String('cache').text('perf_cache', (Cache.HITS + ACache.HITS, Cache.MISS + ACache.MISS, Cache.UPDATES + ACache.UPDATES, Cache.REMOVES + ACache.REMOVES)),
+            GDT_String('cache').text('perf_cache', (Cache.HITS + ACache.HITS, Cache.MISS + ACache.MISS, Cache.UPDATES + ACache.UPDATES, Cache.REMOVES + ACache.REMOVES, c.OHITS, c.VHITS, c.THITS)),
             GDT_Divider(),
             #PYPP#END#
             GDT_Duration('time').initial_value(Application.request_time()),
