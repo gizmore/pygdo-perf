@@ -3,6 +3,7 @@ import time
 
 import psutil
 
+from gdo.core.GDT_Float import GDT_Float
 from gdo.base.ACache import ACache
 from gdo.base.Application import Application
 from gdo.base.Cache import Cache
