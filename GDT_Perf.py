@@ -42,6 +42,7 @@ class GDT_Perf(GDT_Panel):
             GDT_String('version').text('perf_version', (GDO_Module.CORE_REV,)),
             GDT_Divider(),
             GDT_String('user').text('perf_user', (user.render_name(), user.get_id())),
+            GDT_String('serv').text('%s', (user.get_server().get_id(),)),
             GDT_Divider(),
             GDT_String('cpu').text('perf_cpu', (str(psutil.cpu_percent()), threading.active_count())),
             GDT_Divider(),
