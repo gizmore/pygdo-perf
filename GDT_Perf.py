@@ -3,6 +3,7 @@ import time
 
 import psutil
 
+from gdo.base.IPC import IPC
 from gdo.core.GDT_Float import GDT_Float
 from gdo.base.ACache import ACache
 from gdo.base.Application import Application
@@ -52,7 +53,7 @@ class GDT_Perf(GDT_Panel):
             GDT_Divider(),
             GDT_String('log').text('perf_log', (str(Logger.LINES_WRITTEN),)),
             GDT_Divider(),
-            GDT_String('events').text('perf_events', (str(app.EVENT_COUNT),)),
+            GDT_String('events').text('perf_events', (app.EVENT_COUNT, IPC.COUNT)),
             GDT_Divider(),
             GDT_String('code').text('perf_code', (GDT.GDT_COUNT, GDT.GDT_MAX, GDO.GDO_COUNT, GDO.GDO_MAX, me, ml)),
             GDT_Divider(),
