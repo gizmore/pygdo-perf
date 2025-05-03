@@ -28,10 +28,30 @@ from gdo.ui.GDT_Panel import GDT_Panel
 
 class GDT_Perf(GDT_Panel):
 
+    _perf_mode: str
+
     def __init__(self):
         super().__init__()
+        self._perf_mode = 'full'
+
+    def mode(self, mode: str):
+        self._perf_mode = mode
+        return self
 
     def get_perf(self):
+        return self.get_perf_method()()
+
+    def get_perf_method(self):
+        return getattr(self, f'get_perf_{self._perf_mode}')
+
+    def get_perf_t(self):
+        return GDT_Container().add_field(
+            GDT_Duration('time').units(2, True).initial_value(Application.request_time()),
+            GDT_Divider(),
+            GDT_Link().href(Application.get_page()._method.href('&__yappi=1')).text('perf_yappi', (Application.config('core.profile', '0'),))
+        )
+
+    def get_perf_full(self):
         user = GDO_User.current()
         mem = psutil.Process().memory_info()
         app = Application
