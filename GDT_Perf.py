@@ -60,7 +60,7 @@ class GDT_Perf(GDT_Panel):
         mem = psutil.Process().memory_info()
         app = Application
         loader = ModuleLoader.instance()
-        me = sum(1 for _ in loader.enabled())
+        me = len(loader._enabled)
         ml = len(loader._cache)
         c = Cache
         return GDT_Container().add_field(
