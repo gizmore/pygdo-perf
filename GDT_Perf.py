@@ -45,11 +45,15 @@ class GDT_Perf(GDT_Panel):
         return getattr(self, f'get_perf_{self._perf_mode}')
 
     def get_perf_t(self):
-        return GDT_Container().add_field(
+        cont = GDT_Container().add_field(
             GDT_Duration('time').units(2, True).initial_value(Application.request_time()),
-            GDT_Divider(),
-            GDT_Link().href(Application.get_page()._method.href('&__yappi=1')).text('perf_yappi', (Application.config('core.profile', '0'),))
         )
+        if Application.config('core.profile') == '1':
+            cont.add_field(
+                GDT_Divider(),
+                GDT_Link().href(Application.get_page()._method.href('&__yappi=1')).text('perf_yappi',('1',)),
+            )
+        return cont
 
     def get_perf_full(self):
         user = GDO_User.current()

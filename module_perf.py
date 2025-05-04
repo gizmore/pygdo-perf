@@ -16,7 +16,7 @@ class module_perf(GDO_Module):
     def gdo_module_config(self) -> list[GDT]:
         return [
             GDT_Enum('show_perf').not_null().choices({"never": "Never", "always": "Always", "staff": "Staff"}).initial('always'),
-            GDT_Enum('mode_perf').choices({'t': 'Only Timings', 'min': 'Minimal', 'full': 'Full'}).not_null().initial('t'),
+            GDT_Enum('mode_perf').choices({'t': 'Only Timings', 'min': 'Minimal', 'full': 'Full'}).not_null().initial('full'),
         ]
 
     def cfg_show_perf(self) -> str:
