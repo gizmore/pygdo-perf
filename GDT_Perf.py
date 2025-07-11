@@ -1,14 +1,11 @@
 import threading
-import time
 
 import psutil
 
 from gdo.base.IPC import IPC
-from gdo.core.GDT_Float import GDT_Float
 from gdo.base.ACache import ACache
 from gdo.base.Application import Application
 from gdo.base.Cache import Cache
-from gdo.base.Database import Database
 from gdo.base.GDO import GDO
 from gdo.base.GDO_Module import GDO_Module
 from gdo.base.GDT import GDT
@@ -20,7 +17,6 @@ from gdo.core.GDO_User import GDO_User
 from gdo.core.GDT_Container import GDT_Container
 from gdo.core.GDT_String import GDT_String
 from gdo.date.GDT_Duration import GDT_Duration
-from gdo.ui.GDT_Bar import GDT_Bar
 from gdo.ui.GDT_Divider import GDT_Divider
 from gdo.ui.GDT_Link import GDT_Link
 from gdo.ui.GDT_Panel import GDT_Panel
@@ -44,7 +40,7 @@ class GDT_Perf(GDT_Panel):
     def get_perf_method(self):
         return getattr(self, f'get_perf_{self._perf_mode}')
 
-    def get_perf_t(self):
+    def get_perf_min(self):
         cont = GDT_Container().add_field(
             GDT_Duration('time').units(2, True).initial_value(Application.request_time()),
         )
