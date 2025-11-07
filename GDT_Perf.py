@@ -45,7 +45,7 @@ class GDT_Perf(GDT_Panel):
             GDT_Duration('time').units(2, True).initial_value(Application.request_time()),
         )
         if Application.config('core.profile') == '1':
-            cont.add_field(
+            cont.add_fields(
                 GDT_Divider(),
                 GDT_Link().href(Application.get_page()._method.href('&__yappi=1')).text('perf_yappi',('1',)),
             )
@@ -59,7 +59,7 @@ class GDT_Perf(GDT_Panel):
         me = len(loader._enabled)
         ml = len(loader._cache)
         c = Cache
-        return GDT_Container().add_field(
+        return GDT_Container().add_fields(
             GDT_String('version').text('perf_version', (GDO_Module.CORE_REV,)),
             GDT_Divider(),
             GDT_String('user').text('perf_user', (user.render_name(), user.get_id())),
