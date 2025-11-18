@@ -85,6 +85,6 @@ class GDT_Perf(GDT_Panel):
             GDT_Link().href(Application.get_page()._method.href('&__yappi=1')).text('perf_yappi', (Application.config('core.profile', '0'),))
         )
 
-    def render(self, mode: Mode = Mode.HTML):
+    def render(self, mode: Mode = Mode.html):
         self.text_raw(self.get_perf().render(mode), False)
         return super().render(mode)
