@@ -65,21 +65,6 @@ class GDT_Perf(GDT_Panel):
             GDT_String('user').text('perf_user', (user.render_name(), user.get_id())),
             GDT_Divider(),
             GDT_String('mem').text('perf_mem', (Files.human_file_size(mem.rss),)),
-            #PYPP#START#
-            GDT_Divider(),
-            GDT_String('cpu').text('perf_cpu', (str(psutil.cpu_percent()), threading.active_count())),
-            GDT_Divider(),
-            GDT_String('db').text('perf_db', (str(app.DB_READS), str(app.DB_WRITES), str(app.DB_READS + app.DB_WRITES), round(app.DB_TRANSACTIONS, 2))),
-            GDT_Divider(),
-            GDT_String('log').text('perf_log', (str(Logger.LINES_WRITTEN),)),
-            GDT_Divider(),
-            GDT_String('events').text('perf_events', (app.EVENT_COUNT, IPC.COUNT)),
-            GDT_Divider(),
-            GDT_String('code').text('perf_code', (GDT.GDT_COUNT, GDT.GDT_MAX, GDO.GDO_COUNT, GDO.GDO_MAX, me, ml)),
-            GDT_Divider(),
-            GDT_String('cache').text('perf_cache', (Cache.HITS + ACache.HITS, Cache.MISS + ACache.MISS, Cache.UPDATES + ACache.UPDATES, Cache.REMOVES + ACache.REMOVES, c.OHITS, c.VHITS, c.THITS)),
-            GDT_Divider(),
-            #PYPP#END#
             GDT_Duration('time').units(2, True).initial_value(app.request_time()),
             GDT_Divider(),
             GDT_Link().href(Application.get_page()._method.href('&__yappi=1')).text('perf_yappi', (Application.config('core.profile', '0'),))
