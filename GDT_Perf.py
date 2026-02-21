@@ -44,7 +44,7 @@ class GDT_Perf(GDT_Panel):
         cont = GDT_Container().add_field(
             GDT_Duration('time').units(2, True).initial_value(Application.request_time()),
         )
-        if Application.config('core.profile') == '1':
+        if Application.config('debug.profiler') == '1':
             cont.add_fields(
                 GDT_Divider(),
                 GDT_Link().href(Application.get_page()._method.href('&__yappi=1')).text('perf_yappi',('1',)),
@@ -82,7 +82,7 @@ class GDT_Perf(GDT_Panel):
             #PYPP#END#
             GDT_Duration('time').units(2, True).initial_value(app.request_time()),
             GDT_Divider(),
-            GDT_Link().href(Application.get_page()._method.href('&__yappi=1')).text('perf_yappi', (Application.config('core.profile', '0'),))
+            GDT_Link().href(Application.get_page()._method.href('&__yappi=1')).text('perf_yappi', (Application.config('debug.profiler', '0'),))
         )
 
     def render(self, mode: Mode = Mode.render_html):
