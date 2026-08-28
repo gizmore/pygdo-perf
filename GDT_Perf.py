@@ -25,13 +25,19 @@ from gdo.ui.GDT_Panel import GDT_Panel
 class GDT_Perf(GDT_Panel):
 
     _perf_mode: str
+    _compact: bool
 
     def __init__(self):
         super().__init__()
         self._perf_mode = 'full'
+        self._compact = False
 
     def mode(self, mode: str):
         self._perf_mode = mode
+        return self
+
+    def compact(self, compact: bool = True):
+        self._compact = compact
         return self
 
     def get_perf(self):
@@ -86,5 +92,6 @@ class GDT_Perf(GDT_Panel):
         )
 
     def render(self, mode: Mode = Mode.render_html):
+        mode = Mode.render_cli if self._compact else mode
         self.text_raw(self.get_perf().render(mode), False)
         return super().render(mode)

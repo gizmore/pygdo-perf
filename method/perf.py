@@ -10,4 +10,6 @@ class perf(Method):
         return 'perf'
 
     def gdo_execute(self) -> GDT:
+        if self._env_server.get_connector_name() == 'websocket':
+            return GDT_Perf().compact()
         return GDT_Perf()
